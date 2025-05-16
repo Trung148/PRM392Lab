@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">thu code giao dien</string>
+    <string name="help_text_html">Forgot your login details? <b>Get help signing in.</b></string>
+    <string name="signup_text">Don’t have an account? <b>Sign up.</b></string>
 </resources>
