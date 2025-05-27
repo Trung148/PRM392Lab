@@ -1,42 +1,36 @@
 package com.example.thucodegiaodien
 
-
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class AdminActivity : AppCompatActivity() {
-
+class HomeActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var tvWelcome: TextView
+    private lateinit var btnClose: Button
     private lateinit var titleText: TextView
-    private lateinit var edtName: EditText
-    private lateinit var btnLogin: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activityadmin)
-        edtName = findViewById(R.id.edtName)
-        btnLogin = findViewById(R.id.btnLogin)
+        setContentView(R.layout.activityhome)
+
+        tvWelcome = findViewById(R.id.tvWelcome)
+        btnClose = findViewById(R.id.btnClose)
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
-        titleText = findViewById(R.id.titleText)
-
-        btnLogin.setOnClickListener {
-            val name = edtName.text.toString()
-            if (name.isNotEmpty()) {
-                val intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("username", name)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
-            }
+        val name = intent.getStringExtra("username")
+        tvWelcome.text = "Welcome, $name"
+        val btnSendAndReceiver = findViewById<Button>(R.id.btnSendAndReceiver)
+        btnSendAndReceiver.setOnClickListener {
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)
         }
-
+        val btnCall = findViewById<Button>(R.id.btnCall)
+        btnCall.setOnClickListener {
+            val intent = Intent(this, CallActivity::class.java)
+            startActivity(intent)
+        }
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -54,11 +48,11 @@ class AdminActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        btnClose.setOnClickListener {
+            finishAffinity()
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Clear name field when return or reopen app
-        edtName.text.clear()
-    }
+
+
 }

@@ -23,12 +23,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FirstActivity" />
+        <activity android:name=".SecondActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".ProductListActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".AddProductActivity" />
+        <receiver
+            android:name=".MyReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.CUSTOM_ACTION" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".CallActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL_BUTTON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
